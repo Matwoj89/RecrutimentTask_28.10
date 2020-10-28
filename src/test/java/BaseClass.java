@@ -11,12 +11,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
-public class BaseTest {
+public abstract class BaseClass {
     protected WebDriver driver;
     protected Actions actions;
     protected WebDriverWait wait;
 
-    By privacyPolcyAcceptanceButton = By.cssSelector("button[data-role='accept-consent']");
+    private By privacyPolicyAcceptanceButton = By.cssSelector("button[data-role='accept-consent']");
 
     @BeforeEach
     public void setup() {
@@ -28,7 +28,7 @@ public class BaseTest {
         driver.manage().window().setPosition(new Point(10, 30));
         actions = new Actions(driver);
         driver.navigate().to("https://allegro.pl/");
-        driver.findElement(privacyPolcyAcceptanceButton).click();
+        driver.findElement(privacyPolicyAcceptanceButton).click();
 
         wait = new WebDriverWait(driver, 10);
     }

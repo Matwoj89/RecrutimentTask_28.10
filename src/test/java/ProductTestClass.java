@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -6,12 +7,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 import java.text.DecimalFormat;
+import java.time.Duration;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class ProductTest extends BaseTest {
+public class ProductTestClass extends BaseClass {
 
     private By searchBarLocator = By.cssSelector("input[data-role='search-input']");
     private By submitButtonLocator = By.cssSelector("button[data-role='search-button']");
@@ -21,6 +23,8 @@ public class ProductTest extends BaseTest {
     private By colorFilterLocator = By.cssSelector("h3[data-slot='Kolor']");
     private By maxPriceLocator = By.cssSelector("article[data-analytics-view-custom-index0='2']>div>div+div>div+div>div>div>span");
     private By productsLocators = By.cssSelector("article[data-analytics-view-custom-index0]");
+    private By spinnerLoaderLocator = By.cssSelector("a[name='allegro-spinner']");
+    private By dropdownListLocator = By.cssSelector("select[data-value='m']");
 
     @Test
     public void searchingProductTest() {
@@ -28,7 +32,7 @@ public class ProductTest extends BaseTest {
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(searchTitleLocator));
         assertEquals("Iphone 11", driver.findElement(searchTitleLocator).getText(),
-                "Do you enter correctly name of expected product?");
+                "Did you enter correctly name of expected product?");
     }
 
     @Test
@@ -38,29 +42,30 @@ public class ProductTest extends BaseTest {
 
         String URL = driver.getCurrentUrl();
         assertTrue(URL.contains("kolor=czarny"),
-                "Please make sure the black color checkbox is selcted");
+                "Please make sure the black color checkbox is selected");
     }
 
     @Test
     public void maxPriceTest() {
         insertProductIntoSearchBar();
         selectBlackColor();
-        productQuantity();
-        chooseMaxPriceFromDropdownList();
+        getProductQuantity();
+        chooseMaxPrice();
         getAndFormatPrice();
-        String URL = driver.getCurrentUrl();
-        assertTrue(URL.contains("&order=pd"),
-                "Please make sure the dropbox is selected to maximum price sorting");
+        String Url = driver.getCurrentUrl();
+        assertTrue(Url.contains("&order=pd"),
+                "Please make sure the dropbox is selected to sort by maximum price");
 
     }
 
-    public void insertProductIntoSearchBar() {
+    private void insertProductIntoSearchBar() {
         WebElement searchBar = driver.findElement(searchBarLocator);
         actions.sendKeys(searchBar, "Iphone 11").click().build().perform();
         driver.findElement(submitButtonLocator).click();
     }
 
-    public void selectBlackColor() {
+    private void selectBlackColor() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(smartphoneLocator));
         driver.findElement(smartphoneLocator).click();
         wait.until(ExpectedConditions.elementToBeClickable(blackColorLocator));
         WebElement colorFilterElement = driver.findElement(colorFilterLocator);
@@ -68,26 +73,22 @@ public class ProductTest extends BaseTest {
         driver.findElement(blackColorLocator).click();
     }
 
-    public void productQuantity() {
+    private void getProductQuantity() {
         List<WebElement> listOfVisibleProducts = driver.findElements(productsLocators);
         System.out.println("Quantity of visible products on page is: " + listOfVisibleProducts.size());
     }
 
-    public void chooseMaxPriceFromDropdownList() {
-        WebElement dropdownList = driver.findElement(By.cssSelector("select[data-value='m']"));
-        Select windsurfingDropdownList = new Select(dropdownList);
-        windsurfingDropdownList.selectByIndex(2);
-        WebElement allegroSpinner = driver.findElement(By.cssSelector("a[name='allegro-spinner']"));
-        wait.until(ExpectedConditions.invisibilityOf(allegroSpinner));
-
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    private void chooseMaxPrice() {
+        WebElement dropdownList = driver.findElement(dropdownListLocator);
+        Select sortDropdownList = new Select(dropdownList);
+        sortDropdownList.selectByIndex(2);
+        WebElement allegroSpinnerLoader = driver.findElement(spinnerLoaderLocator);
+        wait.until(ExpectedConditions.invisibilityOf(allegroSpinnerLoader));
+        wait.withTimeout(Duration.ofSeconds(2));
     }
 
-    public void getAndFormatPrice() {
+    private void getAndFormatPrice() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(maxPriceLocator));
         WebElement maxPriceElement = driver.findElement(maxPriceLocator);
         String priceFromPage = maxPriceElement.getText();
 
