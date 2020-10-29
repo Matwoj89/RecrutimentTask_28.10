@@ -15,14 +15,14 @@ Script was written with Intelij IDEA and uses:
 * Junit 5.2.0
 * WebDriverManager 4.2.2
 > Has 2 classes:
-* BaseClass - abstract class dedicated to configuration
+* BaseTest - abstract class dedicated to configuration
 * ProductTest - with 3 test methods and additional methods supporting them
 
 > By running the maxPriceTest() test method, you can see all the job requirements are met
 
 ## Development setup
 
-With WebDriverManger you don't need to store the driver locally on disk. Webdrivermanager allows the user to change the browser as he needs. To do this you must in BaseClass, in lines 27 and 28, change parameters to the following:
+With WebDriverManger you don't need to store the driver locally on disk. Webdrivermanager allows the user to change the browser as he needs. To do this you must in BaseTest, in lines 27 and 28, change parameters to the following:
 > Chrome
 - WebDriverManager.chromedriver().setup();
 - driver = new ChromeDriver();

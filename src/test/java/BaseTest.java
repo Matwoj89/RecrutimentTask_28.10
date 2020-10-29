@@ -14,7 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
-public abstract class BaseClass {
+public abstract class BaseTest {
     protected WebDriver driver;
     protected Actions actions;
     protected WebDriverWait wait;
