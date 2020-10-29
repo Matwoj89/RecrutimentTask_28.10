@@ -30,9 +30,8 @@ public class ProductTestClass extends BaseClass {
     public void searchingProductTest() {
         insertProductIntoSearchBar();
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(searchTitleLocator));
-        assertEquals("Iphone 11", driver.findElement(searchTitleLocator).getText(),
-                "Did you enter correctly name of expected product?");
+        String productName = wait.until(ExpectedConditions.visibilityOfElementLocated(searchTitleLocator)).getText();
+        assertEquals("Iphone 11", productName, "Did you enter correctly name of expected product?");
     }
 
     @Test
@@ -40,8 +39,8 @@ public class ProductTestClass extends BaseClass {
         insertProductIntoSearchBar();
         selectBlackColor();
 
-        String URL = driver.getCurrentUrl();
-        assertTrue(URL.contains("kolor=czarny"),
+        String Url = driver.getCurrentUrl();
+        assertTrue(Url.contains("kolor=czarny"),
                 "Please make sure the black color checkbox is selected");
     }
 
@@ -100,6 +99,7 @@ public class ProductTestClass extends BaseClass {
         double finallyPrice = priceWithoutVat * 1.23;
         DecimalFormat priceFormat = new DecimalFormat("#.00");
 
+        System.out.println("The price without 0.23 tax is: " + priceWithoutVat + " zł");
         System.out.printf("The total price with added tax is: " + priceFormat.format(finallyPrice) + " zł");
 
     }
