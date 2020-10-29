@@ -16,7 +16,7 @@ Scrypt was written with Intelij IDEA and uses:
 * webdriverManager 4.2.2
 > Has 2 classes:
 * BaseClass - abstract class dedicated to configuration
-* ProductTestClass - with 3 test methods and additional methods supporting them
+* ProductTest - with 3 test methods and additional methods supporting them
 
 > By running the maxPriceTest() test method, you can see all the job requirements are met
 

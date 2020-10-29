@@ -13,7 +13,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class ProductTestClass extends BaseClass {
+public class ProductTest extends BaseClass {
 
     private By searchBarLocator = By.cssSelector("input[data-role='search-input']");
     private By submitButtonLocator = By.cssSelector("button[data-role='search-button']");
