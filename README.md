@@ -14,7 +14,7 @@ Scrypt was written with Intelij IDEA and uses:
 * Selenium 3.14
 * Junit 5.2.0
 * webdriverManager 4.2.2
-Has 2 classes:
+> Has 2 classes:
 * BaseClass - abstract class dedicated to configuration
 * ProductTestClass - with 3 test methods and additional methods supporting them
 
