@@ -23,15 +23,15 @@ Scrypt was written with Intelij IDEA and uses:
 ## Development setup
 
 With WebdriverManger you don't need to store the driver locally on disk. Webdrivermanager allows the user to change the browser as he needs. To do this you must in BaseClass, in lines 27 and 28, change parameters to the following:
-* Chrome
+> Chrome
 - WebDriverManager.chromedriver().setup();
 - driver = new ChromeDriver();
-* Firefox
+> Firefox
 - WebDriverManager.firefoxdriver().setup();
 - driver = new FirefoxDriver();
-* Opera
+> Opera
 - WebDriverManager.operadriver().setup();
 - driver = new OperaDriver();
-* Edge
+> Edge
 - WebDriverManager.edgedriver().setup();
 - driver = new EdgeDriver();
