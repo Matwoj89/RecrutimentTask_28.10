@@ -10,19 +10,19 @@ Instructions:
 * do największej ceny dodajemy 23% 
 
 ## About
-Scrypt was written with Intelij IDEA and uses:
+Script was written with Intelij IDEA and uses:
 * Selenium 3.14
 * Junit 5.2.0
-* webdriverManager 4.2.2
+* WebDriverManager 4.2.2
 > Has 2 classes:
 * BaseClass - abstract class dedicated to configuration
-* ProductTestClass - with 3 test methods and additional methods supporting them
+* ProductTest - with 3 test methods and additional methods supporting them
 
 > By running the maxPriceTest() test method, you can see all the job requirements are met
 
 ## Development setup
 
-With WebdriverManger you don't need to store the driver locally on disk. Webdrivermanager allows the user to change the browser as he needs. To do this you must in BaseClass, in lines 27 and 28, change parameters to the following:
+With WebDriverManger you don't need to store the driver locally on disk. Webdrivermanager allows the user to change the browser as he needs. To do this you must in BaseClass, in lines 27 and 28, change parameters to the following:
 > Chrome
 - WebDriverManager.chromedriver().setup();
 - driver = new ChromeDriver();
